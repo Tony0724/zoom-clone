@@ -1,0 +1,421 @@
+
+html,
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+#welcome {
+    border: 3px solid #000;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 50rem;
+    padding: 1.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#welcome #title {
+    color: #12afef;
+    font-size: 4rem;
+}
+
+#welcome #titleDes {
+    margin-top: 1.2rem;
+}
+
+#welcome h1,
+h3 {
+    margin: 0;
+}
+
+#welcome h1 {
+    font-size: 7vw;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+    text-align: center;
+}
+#welcome h3 {
+    font-size: 4.8vw;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+}
+/* Change greeting font-size dynamically */
+@media screen and (min-width: 360px) {
+    #welcome h1 {
+        font-size: 5.5vw;
+    }
+    #welcome h3 {
+        font-size: 3.7716vw;
+    }
+}
+@media screen and (min-width: 500px) {
+    #welcome h1 {
+        font-size: 4vw;
+    }
+    #welcome h3 {
+        font-size: 2.743vw;
+    }
+}
+@media screen and (min-width: 700px) {
+    #welcome h1 {
+        font-size: 1.75rem;
+    }
+    #welcome h3 {
+        font-size: 1.2rem;
+    }
+}
+
+#welcome form {
+    display: flex;
+    flex-direction: column;
+    max-width: 20rem;
+    padding: 0.75rem;
+    margin-bottom: 0.2rem;
+    margin-top: 2rem;
+}
+
+#welcome form div {
+    display: flex;
+    flex-direction: row;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+#welcome form div span {
+    margin-top: 3px;
+    width: 4.4rem;
+    flex-grow: 0;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+}
+
+#welcome form div input {
+    margin-left: 40px;
+    flex-basis: 7rem;
+    flex-grow: 1;
+    border: 1px solid black;
+}
+
+#welcome form button {
+    margin-top: 3rem;
+    min-width: 10rem;
+    max-width: 15rem;
+    flex-grow: 1;
+    flex-shrink: 0;
+    align-self: center;
+    border: 1px solid rgb(76, 60, 177);
+    border-radius: 30px;
+    background-color: slateblue;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: white;
+    height: 2rem;
+}
+
+#welcome #alert {
+    align-self: center;
+    background-color: rgb(255, 138, 101);
+    height: 1.5rem;
+    width: 100%;
+    text-align: center;
+    border: 1px solid rgb(240, 111, 71);
+    border-radius: 5px;
+    display: none;
+}
+
+#welcome #alert span {
+    height: 1.5rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: white;
+}
+
+#call #call-content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100 * var(--vh, 1vh));
+    width: 100vw;
+    background: black;
+}
+
+#call #call-content #stream-wrapper {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    max-height: calc(calc(100 * var(--vh, 1vh)) - 50px);
+    position: relative;
+}
+
+#call #call-content #stream-wrapper .stream {
+    z-index: 1;
+    margin: 5px;
+    position: relative;
+}
+
+@media (orientation: landscape) {
+    #call #call-content #stream-wrapper {
+        flex-direction: row;
+    }
+
+    #call #call-content #stream-wrapper .stream {
+        width: 50vw;
+    }
+}
+
+@media (orientation: portrait) {
+    #call #call-content #stream-wrapper {
+        flex-direction: column;
+    }
+
+    #call #call-content #stream-wrapper .stream {
+        height: calc(50% - 10px);
+    }
+}
+
+#call #call-content #stream-wrapper .stream video {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+#call #call-content #stream-wrapper .stream span {
+    z-index: 2;
+    color: white;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 5px 5px 5px 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 1.2rem;
+}
+
+#call #call-content #stream-wrapper .stream select {
+    z-index: 3;
+    position: absolute;
+    color: white;
+    background: rgba(0, 0, 0, 0.75);
+    font-size: 0.9rem;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+#call #call-content #stream-wrapper #chat-wrapper {
+    z-index: 2;
+    flex-direction: column;
+    position: absolute;
+    width: 400px;
+    height: 700px;
+    right: 0px;
+    bottom: 0px;
+    margin: 10px;
+    background: rgba(144, 130, 235, 0.85);
+    box-shadow: 0 8px 32px 0 rgba(131, 131, 131, 0.185);
+    border-radius: 10px;
+}
+
+@media (max-width: 420px) {
+    #call #call-content #stream-wrapper #chat-wrapper {
+        width: calc(100% - 20px);
+    }
+}
+
+@media (max-height: 720px) {
+    #call #call-content #stream-wrapper #chat-wrapper {
+        height: calc(100% - 20px);
+    }
+}
+
+#call #call-content #stream-wrapper #chat-wrapper #chat-content-wrapper {
+    flex-grow: 1;
+    min-height: 200px;
+    padding: 7px;
+}
+
+#call #call-content #stream-wrapper #chat-wrapper #chat-content-wrapper ul {
+    overflow: hidden;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+#call #call-content #stream-wrapper #chat-wrapper #chat-content-wrapper ul li {
+    margin-top: 5px;
+    display: flex;
+}
+
+#call
+#call-content
+#stream-wrapper
+#chat-wrapper
+#chat-content-wrapper
+ul
+li.my-chat {
+    flex-direction: row;
+}
+
+#call
+#call-content
+#stream-wrapper
+#chat-wrapper
+#chat-content-wrapper
+ul
+li.peer-chat {
+    flex-direction: row-reverse;
+}
+
+#call
+#call-content
+#stream-wrapper
+#chat-wrapper
+#chat-content-wrapper
+ul
+li
+div.chat-spacer {
+    min-width: 25%;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+#call
+#call-content
+#stream-wrapper
+#chat-wrapper
+#chat-content-wrapper
+ul
+li
+div.chat-span-wrapper {
+    flex-grow: 0;
+    padding: 10px;
+    text-align: left;
+    border-radius: 5px;
+}
+
+#call
+#call-content
+#stream-wrapper
+#chat-wrapper
+#chat-content-wrapper
+ul
+li.my-chat
+div.chat-span-wrapper {
+    background-color: yellow;
+}
+
+#call
+#call-content
+#stream-wrapper
+#chat-wrapper
+#chat-content-wrapper
+ul
+li.peer-chat
+div.chat-span-wrapper {
+    background-color: lightgray;
+}
+
+#call #call-content #stream-wrapper #chat-wrapper #chat-input {
+    flex-grow: 1;
+    max-height: 100px;
+    padding: 7px;
+}
+
+#call #call-content #stream-wrapper #chat-wrapper #chat-input textarea {
+    width: calc(100% - 7px);
+    height: calc(100% - 7px);
+    background-color: rgb(233, 230, 255);
+    border: 0;
+}
+
+#call #call-content #control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(240, 240, 240);
+}
+
+#call #call-content #control button {
+    margin: 0;
+    height: 40px;
+    width: 100px;
+    border-radius: 20px;
+    background-color: slateblue;
+    border: 0;
+    color: white;
+    margin-right: 20px;
+}
+
+#call .modal-overlay,
+.modal {
+    display: none;
+}
+
+#call .modal-overlay {
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(131, 131, 131, 0.185);
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    border: 1px solid rbga(255, 255, 255, 0.18);
+}
+
+#call .modal {
+    z-index: 6;
+    background: rgba(144, 130, 235, 0.85);
+    box-shadow: 0 8px 32px 0 rgba(131, 131, 131, 0.185);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    width: 250px;
+    border: 1px solid rbga(255, 255, 255, 0.18);
+    position: relative;
+    padding: 10px;
+    flex-direction: column;
+}
+
+#call .modal span,
+button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+#call .modal span:first-child {
+    font-size: 1rem;
+}
+
+#call .modal button {
+    border: 1px solid rgb(76, 60, 177);
+    border-radius: 5px;
+    background-color: slateblue;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: white;
+    height: 1.5rem;
+}
+
+#call .modal button#leave-room,
+button#approve {
+    margin-top: 15px;
+}
