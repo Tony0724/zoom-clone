@@ -32,6 +32,7 @@ html(lang="en")
             div#peerStream.stream
               video#peerVideo(autoPlay, playsinline width="200px")
               span#peerNickname
+            video#screenShareVideo(autoPlay, playsinline width="400" height="400")
             div#chat-wrapper(style={display: 'none'}) 
               div#chat-content-wrapper
                 ul
@@ -44,6 +45,7 @@ html(lang="en")
             button#hang-up <i class="fas fa-phone-slash"></i>
             button#chat-button <i class="fas fa-comments"></i>
             button#nickname-change <i class="fas fa-edit"></i>
+            button#screen_share <i class="fas fa-share-alt-square"></i>
         div#confirm-join-overlay.modal-overlay
           div#confirm-join.modal
             span#request-nickname
@@ -58,4 +60,3 @@ html(lang="en")
             button#leave-room Leave room
             button#stay-room Stay
     script(async src="public/js/app.js")
-    script(src="https://cdn.metered.ca/sdk/video/1.4.5/sdk.min.js" type="text/javascript")

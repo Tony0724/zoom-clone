@@ -15,7 +15,9 @@ const hangUpBtn = callContent.querySelector('#control button#hang-up');
 const chatBtn = callContent.querySelector('#control button#chat-button');
 const chatList = chatBox.querySelector('#chat-content-wrapper ul');
 const chatTextArea = chatBox.querySelector('form#chat-input textarea');
-const changeNickname = callContent.querySelector("#control button#nickname-change")
+const changeNickname = callContent.querySelector("#control button#nickname-change");
+const screenShareVideo = callContent.querySelector("video#screenShareVideo");
+const screenShareButton = callContent.querySelector("#control button#screen_share")
 
 // Constant: List of STUN Servers
 const STUN_SERVER_LIST = [
@@ -576,7 +578,7 @@ chatTextArea.addEventListener('keydown', (keyboardEvent) => {
 // EventListener: change nickname
 changeNickname.addEventListener("click", () => {
   let prom = prompt("바꿀 닉네임을 입력해주세요", myNickname)
-  if(prom == null || prom < 2) {
+  if(prom == null || prom.length < 2) {
     alert("최소 2글자는 입력하셔야 합니다!")
   } else {
     socket.emit("change_nickname", roomName, prom)
@@ -592,6 +594,26 @@ socket.on("change_nickname", (nickname) => {
     alert(`대화 상대가 닉네임을 ${nickname}으로 바꿨습니다.`)
   }, 2000);
 })
+
+// EventListener: Screen Share Event
+
+let ScreenStream = null;
+async function handleScreenShareClick() {
+  try {
+    socket.emit("screen_start")
+    ScreenStream = await navigator.mediaDevices.getDisplayMedia({
+      video: {cursor: "always"},
+      audio: true,
+    })
+    screenShareVideo.srcObject = ScreenStream;
+    makeScreenConnection()
+  } 
+  catch(e) {
+    console.error("Error:", e)
+  }
+}
+
+screenShareButton.addEventListener("click", handleScreenShareClick)
 
 // EventListener: Dynamically change screen size
 window.addEventListener('resize', () => {
