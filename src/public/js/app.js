@@ -577,13 +577,15 @@ chatTextArea.addEventListener('keydown', (keyboardEvent) => {
 
 // EventListener: change nickname
 changeNickname.addEventListener("click", () => {
-  let prom = prompt("바꿀 닉네임을 입력해주세요", myNickname)
-  if(prom == null || prom.length < 2) {
-    alert("최소 2글자는 입력하셔야 합니다!")
+  let prom = prompt("Change nickname as you want!", myNickname)
+  if(prom == null) {
+    alert("If you think of a nickname to change, please type it again.")
+  } else if(prom.length < 2) {
+      alert("Please, write a nickname enter at least 2 characters!")
   } else {
-    socket.emit("change_nickname", roomName, prom)
-    const nickname = callContent.querySelector('#myNickname');
-    nickname.innerText = prom;
+      socket.emit("change_nickname", roomName, prom)
+      const nickname = callContent.querySelector('#myNickname');
+      nickname.innerText = prom;
   }
 })
 
@@ -591,7 +593,7 @@ socket.on("change_nickname", (nickname) => {
   const nicknameMusted = callContent.querySelector("#peerNickname");
   nicknameMusted.innerText = nickname;
   setTimeout(() => {
-    alert(`대화 상대가 닉네임을 ${nickname}으로 바꿨습니다.`)
+    alert(`Your contact has changed his nickname to ${nickname}.`)
   }, 2000);
 })
 
@@ -606,7 +608,6 @@ async function handleScreenShareClick() {
       audio: true,
     })
     screenShareVideo.srcObject = ScreenStream;
-    makeScreenConnection()
   } 
   catch(e) {
     console.error("Error:", e)
